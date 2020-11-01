@@ -125,12 +125,12 @@ $(document).ready(function(){
 		var cls = $( this ).attr( 'class' );
 		var id = $( this ).closest( 'form' ).children( 'input[name=id]' ).val();
 		if ( cls != 'dynamic-action' ) {
-			miniShop2.Callbacks.Cart.add.response.success = function( response ) {
+			miniShop2.Callbacks.add('Cart.add.response.success','msminicart_add', function(response) {
 				if( response['success'] == true ) {
 					msMiniCartDynamic.changeDynamic( 'add' );
 				}
-			}
-			miniShop2.Callbacks.Cart.remove.response.success = function( response ) {
+			});
+			miniShop2.Callbacks.add('Cart.remove.response.success','msminicart_remove', function(response) {
 				if( response['success'] == true ) {
 					msMiniCartDynamic.changeDynamic( 'remove' );
 					
@@ -142,7 +142,7 @@ $(document).ready(function(){
 						$( selector + ' input[name=count]' ).val( '' );
 					}
 				}
-			}
+			});
 		}
 		else {
 			return false;
